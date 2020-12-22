@@ -1,0 +1,216 @@
+<html>
+  <head>
+
+    <title>Calculadora</title> 
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+
+        margin: 0px;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-image: linear-gradient(#ccc, #f6f6f6);
+      }
+
+      .calc {
+        width: 270px;
+        height: auto;
+
+        padding: 15px;
+        box-sizing: border-box;
+        border: 1px #f0f0f0 solid;
+        border-radius: 5px;
+
+        background-color: #f5f5f5;
+
+        box-shadow: 0px 3px 0px #ccc;
+      }
+
+      .calc__brand {
+        width: 100%;
+        box-sizing: border-box;
+
+        font-style: italic;
+
+        margin-bottom: 10px;
+
+        color: #333;
+      }
+
+      .calc__brand span {
+        font-style: normal;
+        font-weight: bold;
+        
+        color: blue;
+      }
+
+      .calc__head {
+        width: 100%;
+        height: 50px;
+
+        padding: 10px;
+        box-sizing: border-box;
+
+        background-color: #ccc;
+      }
+
+      .calc__screen {
+        width: 100%;
+        height: 100%;
+
+        background-color: #000;
+
+        text-indent: 10px;
+
+        border: none;
+
+        color: green;
+      }
+
+      .calc__body {
+        width: 100%;
+        height: auto;
+
+        padding: 10px 0px 0px 0px;
+        box-sizing: border-box;
+      }
+
+      .calc__keyboard {
+        height: auto;
+        width: 100%;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .calc__keyboard:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      .calc__keyboard--item {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid #f0f0f0;
+        border-radius: 5px;
+
+        color: #000;
+        background-color: #ccc;
+
+        cursor: pointer;
+
+        transition: 0.5s all;
+      }
+
+      .is-giant {
+        width: 95px;
+      }
+
+      .calc__keyboard--item:hover {
+        background-color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calc">
+      <div class="calc__brand">
+        Sidonho<span>Calculator</span>
+      </div>
+      <div class="calc__head">
+        <input class="calc__screen" type="text" data-calc-input/>
+      </div>
+      <div class="calc__body">
+        <div class="calc__keyboard">
+          <div class="calc__keyboard--item" data-calc-key="+">
+            +
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="-">
+            -
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="*">
+            *
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="/">
+            /
+          </div>
+          <div class="calc__keyboard--item" data-calc-key=".">
+            .
+          </div>
+        </div>
+        <div class="calc__keyboard">
+          <div class="calc__keyboard--item" data-calc-key="1">
+            1
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="2">
+            2
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="3">
+            3
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="4">
+            4
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="5">
+            5
+          </div>
+        </div>
+        <div class="calc__keyboard">
+          <div class="calc__keyboard--item" data-calc-key="6">
+            6
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="7">
+            7
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="8">
+            8
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="9">
+            9
+          </div>
+          <div class="calc__keyboard--item" data-calc-key="0">
+            0
+          </div>
+        </div>
+        <div class="calc__keyboard">
+          <div class="calc__keyboard--item" data-calc-key="clear">
+            C
+          </div>
+          <div class="calc__keyboard--item is-giant" data-calc-key="=">
+            =
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const $input = document.querySelector('[data-calc-input]');
+
+      const $keys = document.querySelectorAll('[data-calc-key]').forEach($key => {
+        $key.addEventListener('click', (event) => {
+          const value = $key.getAttribute('data-calc-key');
+
+          if (value !== 'clear') {
+            $input.value = (value !== '=') 
+              ? `${$input.value}${value}` 
+              : eval($input.value);
+          } else {
+            $input.value = '';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
